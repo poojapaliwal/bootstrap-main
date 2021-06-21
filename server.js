@@ -4,7 +4,6 @@ import mongoose from 'mongoose'
 import Messages from './dbMessages.js'
 import Pusher from "pusher";
 import cors from 'cors'
-import bodyParser from 'body-parser'
 
 // app config
 const app = express()
@@ -21,6 +20,8 @@ const pusher = new Pusher({
 
 // middlewares
 app.use(express.json()); 
+
+app.use(cors());
 
 // DB config
 // mongo password:mrG0f6GgBvMZX2tJ
@@ -46,8 +47,9 @@ db.once("open", ()=>{
         if(change.operationType === 'insert'){
             const messageDetails = change.fullDocument;
             pusher.trigger('messages', 'inserted' , {
-                name: messageDetails.user,
-                message : messageDetails.message
+                name: messageDetails.name,
+                message : messageDetails.message,
+                timestamp: messageDetails.timestamp
             })
         }
         else{
