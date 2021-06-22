@@ -1,3 +1,6 @@
 [submodule "WhatsApp-Clone"]
 	path = WhatsApp-Clone
 	url = https://github.com/poojapaliwal/WhatsApp-Clone
+[submodule "talkBoard"]
+	path = talkBoard
+	url = https://github.com/poojapaliwal/talkBoard
